@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habitat Esencial — Cosmética Natural</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rosa: #F2C4CE;
+    --rosa-deep: #E8A0AF;
+    --lila: #D8C8E8;
+    --lila-deep: #C0A8D8;
+    --verde: #C8DCC0;
+    --verde-deep: #A0C498;
+    --crema: #FAF6F0;
+    --crema2: #F5EEE4;
+    --marron: #8B6E5A;
+    --marron-light: #BFA090;
+    --text: #4A3728;
+    --text-light: #8A7060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--crema);
+    color: var(--text);
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(250,246,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139,110,90,0.12);
+    padding: 18px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; letter-spacing: 0.08em;
+    color: var(--marron);
+  }
+
+  .nav-logo span { font-style: italic; color: var(--rosa-deep); }
+
+  nav ul { list-style: none; display: flex; gap: 40px; }
+  nav ul li a {
+    text-decoration: none; color: var(--text-light);
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav ul li a:hover { color: var(--marron); }
+
+  .nav-btn {
+    background: var(--rosa-deep); color: #fff; border: none;
+    padding: 10px 24px; border-radius: 30px; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .nav-btn:hover { background: var(--marron); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 100px 60px 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .hero-bg-circle.c1 {
+    width: 500px; height: 500px;
+    background: var(--rosa); opacity: 0.35;
+    top: -100px; right: -80px;
+  }
+  .hero-bg-circle.c2 {
+    width: 300px; height: 300px;
+    background: var(--lila); opacity: 0.4;
+    bottom: 80px; right: 200px;
+  }
+  .hero-bg-circle.c3 {
+    width: 200px; height: 200px;
+    background: var(--verde); opacity: 0.5;
+    top: 200px; left: -40px;
+  }
+
+  .hero-text { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--rosa-deep); margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--marron); margin-bottom: 28px;
+  }
+
+  .hero-title em { font-style: italic; color: var(--rosa-deep); }
+
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8; color: var(--text-light);
+    max-width: 440px; margin-bottom: 44px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+
+  .btn-primary {
+    background: var(--marron); color: var(--crema);
+    padding: 14px 36px; border-radius: 40px; border: none;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--rosa-deep); transform: translateY(-2px); }
+
+  .btn-secondary {
+    color: var(--text-light); font-size: 0.85rem; letter-spacing: 0.08em;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: color 0.3s;
+  }
+  .btn-secondary:hover { color: var(--marron); }
+
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .hero-product-showcase {
+    position: relative; width: 380px; height: 440px;
+  }
+
+  .product-bubble {
+    position: absolute; border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; cursor: pointer;
+    transition: transform 0.4s ease;
+  }
+  .product-bubble:hover { transform: scale(1.06); }
+
+  .pb-main {
+    width: 220px; height: 220px;
+    background: var(--rosa);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .pb-main:hover { transform: translate(-50%,-50%) scale(1.06); }
+
+  .pb-2 {
+    width: 140px; height: 140px;
+    background: var(--lila);
+    top: 10px; right: 0;
+  }
+  .pb-3 {
+    width: 110px; height: 110px;
+    background: var(--verde);
+    bottom: 20px; left: 0;
+  }
+  .pb-4 {
+    width: 90px; height: 90px;
+    background: var(--crema2);
+    border: 2px solid var(--rosa-deep);
+    bottom: 10px; right: 30px;
+  }
+
+  .pb-icon { font-size: 2rem; margin-bottom: 6px; }
+  .pb-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem; color: var(--marron); font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTION BASE */
+  section { padding: 100px 60px; }
+
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--rosa-deep); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300; line-height: 1.15; color: var(--marron);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; }
+  .section-desc {
+    font-size: 0.97rem; line-height: 1.85; color: var(--text-light);
+    max-width: 560px;
+  }
+
+  /* HISTORIA */
+  #historia {
+    background: var(--crema2);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .historia-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+
+  .historia-card {
+    border-radius: 20px; padding: 28px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hc-1 { background: var(--rosa); min-height: 180px; }
+  .hc-2 { background: var(--lila); min-height: 140px; align-self: end; }
+  .hc-3 { background: var(--verde); min-height: 140px; }
+  .hc-4 { background: var(--crema); border: 1.5px solid var(--rosa); min-height: 180px; }
+
+  .hc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 300; color: var(--marron); opacity: 0.6;
+    line-height: 1;
+  }
+  .hc-label {
+    font-size: 0.8rem; color: var(--marron); letter-spacing: 0.05em;
+  }
+
+  .historia-text { display: flex; flex-direction: column; gap: 24px; }
+  .historia-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-style: italic; color: var(--marron);
+    line-height: 1.5; border-left: 3px solid var(--rosa-deep);
+    padding-left: 20px; margin: 10px 0;
+  }
+  .historia-p { font-size: 0.95rem; line-height: 1.85; color: var(--text-light); }
+
+  /* PRODUCTOS */
+  #productos { background: var(--crema); }
+
+  .productos-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 50px;
+  }
+
+  .filtros {
+    display: flex; gap: 10px;
+  }
+  .filtro-btn {
+    padding: 8px 20px; border-radius: 30px; border: 1.5px solid var(--rosa);
+    background: transparent; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-light); transition: all 0.25s;
+  }
+  .filtro-btn.active, .filtro-btn:hover {
+    background: var(--rosa); border-color: var(--rosa-deep); color: var(--marron);
+  }
+
+  .productos-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px;
+  }
+
+  .producto-card {
+    border-radius: 20px; overflow: hidden;
+    background: #fff; border: 1px solid rgba(139,110,90,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .producto-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(139,110,90,0.1);
+  }
+
+  .producto-img {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+  }
+
+  .producto-tag {
+    position: absolute; top: 14px; right: 14px;
+    background: rgba(255,255,255,0.85);
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--marron); padding: 4px 10px; border-radius: 20px;
+  }
+
+  .producto-body { padding: 20px 22px 24px; }
+  .producto-nombre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; color: var(--marron); margin-bottom: 6px;
+  }
+  .producto-desc-sm { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+
+  .producto-footer {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .precio {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500; color: var(--marron);
+  }
+  .add-btn {
+    background: var(--marron); color: var(--crema);
+    border: none; border-radius: 30px; padding: 8px 18px;
+    font-family: 'Jost', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.08em; cursor: pointer; transition: background 0.3s;
+  }
+  .add-btn:hover { background: var(--rosa-deep); }
+
+  /* CARRITO */
+  .carrito-fab {
+    position: fixed; bottom: 32px; right: 32px; z-index: 200;
+    background: var(--marron); color: var(--crema);
+    border: none; border-radius: 50px; padding: 14px 24px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font-family: 'Jost', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.08em;
+    box-shadow: 0 8px 24px rgba(139,110,90,0.3);
+    transition: all 0.3s;
+  }
+  .carrito-fab:hover { background: var(--rosa-deep); transform: scale(1.04); }
+  .carrito-fab .badge {
+    background: var(--rosa-deep); color: #fff;
+    border-radius: 50%; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: 500;
+  }
+
+  /* MODAL CARRITO */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(74,55,40,0.4); backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; align-items: flex-start; justify-content: flex-end; }
+
+  .carrito-panel {
+    background: var(--crema); height: 100vh; width: 420px;
+    padding: 40px 36px; overflow-y: auto;
+    display: flex; flex-direction: column;
+    animation: slideIn 0.35s ease;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  .carrito-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 32px;
+  }
+  .carrito-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 300; color: var(--marron);
+  }
+  .close-btn {
+    background: none; border: none; font-size: 1.5rem; color: var(--marron);
+    cursor: pointer; opacity: 0.5; transition: opacity 0.2s;
+  }
+  .close-btn:hover { opacity: 1; }
+
+  .carrito-empty {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px;
+    color: var(--marron-light);
+  }
+  .carrito-empty-icon { font-size: 3.5rem; }
+
+  .carrito-items { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+  .carrito-item {
+    display: flex; gap: 14px; align-items: center;
+    background: #fff; border-radius: 14px; padding: 14px 16px;
+    border: 1px solid rgba(139,110,90,0.08);
+  }
+  .ci-icon { font-size: 2rem; flex-shrink: 0; }
+  .ci-info { flex: 1; }
+  .ci-nombre { font-size: 0.9rem; font-weight: 400; color: var(--marron); }
+  .ci-precio-unit { font-size: 0.78rem; color: var(--text-light); }
+  .ci-controls { display: flex; align-items: center; gap: 8px; }
+  .qty-btn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1.5px solid var(--rosa); background: transparent;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: var(--marron); transition: all 0.2s;
+  }
+  .qty-btn:hover { background: var(--rosa); }
+  .qty-num { font-size: 0.9rem; color: var(--marron); min-width: 20px; text-align: center; }
+  .ci-total { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--marron); }
+
+  .carrito-footer { margin-top: 24px; border-top: 1.5px solid var(--rosa); padding-top: 24px; }
+  .subtotal-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .subtotal-label { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); }
+  .subtotal-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 400; color: var(--marron);
+  }
+
+  .envio-note { font-size: 0.78rem; color: var(--text-light); margin-bottom: 20px; }
+
+  .btn-pedido {
+    width: 100%; background: var(--marron); color: var(--crema);
+    border: none; border-radius: 40px; padding: 16px;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s;
+  }
+  .btn-pedido:hover { background: var(--rosa-deep); }
+
+  /* CONTACTO */
+  #contacto { background: var(--crema2); }
+
+  .contacto-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px;
+  }
+
+  .contacto-info { display: flex; flex-direction: column; gap: 28px; }
+
+  .contacto-item {
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .ci-dot {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .ci-dot.rosa { background: var(--rosa); }
+  .ci-dot.lila { background: var(--lila); }
+  .ci-dot.verde { background: var(--verde); }
+
+  .ci-text-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 4px; }
+  .ci-text-val { font-size: 0.97rem; color: var(--marron); }
+
+  .contacto-form { display: flex; flex-direction: column; gap: 18px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    background: #fff; border: 1.5px solid rgba(139,110,90,0.15);
+    border-radius: 12px; padding: 12px 16px;
+    font-family: 'Jost', sans-serif; font-size: 0.92rem;
+    color: var(--text); transition: border-color 0.25s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--rosa-deep);
+  }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .btn-enviar {
+    background: var(--marron); color: var(--crema);
+    border: none; border-radius: 40px; padding: 14px 36px;
+    font-family: 'Jost', sans-serif; font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s; align-self: flex-start;
+  }
+  .btn-enviar:hover { background: var(--rosa-deep); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 110px; right: 32px; z-index: 500;
+    background: var(--marron); color: var(--crema);
+    padding: 12px 24px; border-radius: 30px;
+    font-size: 0.85rem; letter-spacing: 0.05em;
+    transform: translateY(20px); opacity: 0;
+    transition: all 0.35s ease; pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* FOOTER */
+  footer {
+    background: var(--marron); color: var(--crema);
+    padding: 50px 60px; display: flex;
+    justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; letter-spacing: 0.08em;
+  }
+  .footer-logo em { font-style: italic; opacity: 0.7; }
+  .footer-copy { font-size: 0.8rem; opacity: 0.5; letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { color: rgba(250,246,240,0.6); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.08em; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; color: var(--crema); }
+
+  /* DIVIDER FLORAL */
+  .divider {
+    text-align: center; padding: 16px 0;
+    color: var(--rosa-deep); font-size: 1.2rem; opacity: 0.5;
+    letter-spacing: 1.5em;
+  }
+
+  /* VALORES STRIP */
+  .valores-strip {
+    background: var(--lila); padding: 28px 60px;
+    display: flex; justify-content: space-around; align-items: center;
+  }
+  .valor-item { display: flex; align-items: center; gap: 12px; }
+  .valor-icon { font-size: 1.3rem; }
+  .valor-label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--marron); }
+
+  /* WSP FLOTANTE */
+  .wsp-fab {
+    position: fixed; bottom: 32px; left: 32px; z-index: 200;
+    background: #5BC97A;
+    color: #fff; border: none; border-radius: 50px;
+    padding: 14px 22px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font-family: 'Jost', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.06em;
+    box-shadow: 0 6px 24px rgba(91,201,122,0.45);
+    transition: all 0.3s; text-decoration: none;
+    animation: wspPulse 2.5s infinite;
+  }
+  .wsp-fab:hover {
+    background: #3FB562;
+    transform: scale(1.06);
+    box-shadow: 0 10px 32px rgba(91,201,122,0.55);
+    animation: none;
+  }
+  .wsp-fab svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .wsp-fab span { white-space: nowrap; }
+
+  @keyframes wspPulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(91,201,122,0.45); }
+    50% { box-shadow: 0 6px 32px rgba(91,201,122,0.75); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    #home { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-visual { display: none; }
+    #historia { grid-template-columns: 1fr; padding: 60px 24px; }
+    .historia-visual { display: none; }
+    section { padding: 60px 24px; }
+    .productos-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .contacto-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+    .valores-strip { flex-direction: column; gap: 16px; padding: 24px; }
+    .carrito-panel { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Habitat <span>Esencial</span></div>
+  <ul>
+    <li><a href="#home">Inicio</a></li>
+    <li><a href="#historia">Nuestra historia</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#productos" class="nav-btn">Ver productos</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-bg-circle c3"></div>
+
+  <div class="hero-text">
+    <p class="hero-eyebrow">✦ Cosmética natural &amp; consciente</p>
+    <h1 class="hero-title">
+      La naturaleza<br>en tu <em>piel</em>
+    </h1>
+    <p class="hero-desc">
+      En Habitat Esencial creemos que el cuidado personal es un ritual sagrado. Formulamos productos con ingredientes puros, sin tóxicos, para que tu piel respire y florezca.
+    </p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Explorar productos</a>
+      <a href="#historia" class="btn-secondary">Nuestra historia →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-product-showcase">
+      <div class="product-bubble pb-main">
+        <div class="pb-icon">🌹</div>
+        <div class="pb-label">Sérum de rosas</div>
+      </div>
+      <div class="product-bubble pb-2">
+        <div class="pb-icon">🫐</div>
+        <div class="pb-label">Aceite facial</div>
+      </div>
+      <div class="product-bubble pb-3">
+        <div class="pb-icon">🌿</div>
+        <div class="pb-label">Tónico</div>
+      </div>
+      <div class="product-bubble pb-4">
+        <div class="pb-icon">✨</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<div class="valores-strip">
+  <div class="valor-item"><span class="valor-icon">🌱</span><span class="valor-label">100% Natural</span></div>
+  <div class="valor-item"><span class="valor-icon">🐰</span><span class="valor-label">Cruelty free</span></div>
+  <div class="valor-item"><span class="valor-icon">♻️</span><span class="valor-label">Envases sustentables</span></div>
+  <div class="valor-item"><span class="valor-icon">💜</span><span class="valor-label">Hecho con amor</span></div>
+  <div class="valor-item"><span class="valor-icon">🌍</span><span class="valor-label">Comercio justo</span></div>
+</div>
+
+<!-- HISTORIA -->
+<section id="historia">
+  <div class="historia-visual">
+    <div class="historia-card hc-1">
+      <div class="hc-num">2018</div>
+      <div class="hc-label">El año que todo comenzó</div>
+    </div>
+    <div class="historia-card hc-2">
+      <div class="hc-num">100%</div>
+      <div class="hc-label">Ingredientes naturales</div>
+    </div>
+    <div class="historia-card hc-3">
+      <div class="hc-num">+500</div>
+      <div class="hc-label">Clientes felices</div>
+    </div>
+    <div class="historia-card hc-4">
+      <div class="hc-num">0</div>
+      <div class="hc-label">Tóxicos ni parabenos</div>
+    </div>
+  </div>
+
+  <div class="historia-text">
+    <div>
+      <p class="section-eyebrow">✦ Nuestra historia</p>
+      <h2 class="section-title">Nació de una<br><em>necesidad propia</em></h2>
+    </div>
+    <blockquote class="historia-quote">
+      "Busqué productos que respetaran mi piel y el planeta. No los encontré, así que los creé."
+    </blockquote>
+    <p class="historia-p">
+      Habitat Esencial nació en 2018 cuando su fundadora, después de años buscando una cosmética verdaderamente limpia, decidió tomar las riendas. Con formación en fitoterapia y un profundo amor por la naturaleza, comenzó a formular en su cocina los primeros aceites y cremas.
+    </p>
+    <p class="historia-p">
+      Hoy, cada producto es el resultado de investigación, pruebas y mucho cariño. Trabajamos solo con proveedores que comparten nuestros valores: honestidad, respeto al ambiente y calidad sin concesiones.
+    </p>
+    <a href="#productos" class="btn-primary" style="align-self:flex-start;">Conocé los productos</a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos">
+  <div class="productos-header">
+    <div>
+      <p class="section-eyebrow">✦ Nuestros productos</p>
+      <h2 class="section-title">Formulados con<br><em>propósito</em></h2>
+    </div>
+    <div class="filtros">
+      <button class="filtro-btn active" onclick="filtrar('todos', this)">Todos</button>
+      <button class="filtro-btn" onclick="filtrar('rostro', this)">Rostro</button>
+      <button class="filtro-btn" onclick="filtrar('cuerpo', this)">Cuerpo</button>
+      <button class="filtro-btn" onclick="filtrar('cabello', this)">Cabello</button>
+    </div>
+  </div>
+
+  <div class="productos-grid" id="productos-grid">
+    <!-- generado por JS -->
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div>
+    <p class="section-eyebrow">✦ Contacto</p>
+    <h2 class="section-title">Hablemos de<br><em>tu piel</em></h2>
+    <p class="section-desc">¿Tenés dudas sobre qué producto es el ideal para vos? ¿Querés hacer un pedido mayorista? Estamos aquí para ayudarte.</p>
+  </div>
+
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <div class="contacto-item">
+        <div class="ci-dot rosa">📍</div>
+        <div>
+          <div class="ci-text-label">Ubicación</div>
+          <div class="ci-text-val">Buenos Aires, Argentina</div>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="ci-dot lila">📱</div>
+        <div>
+          <div class="ci-text-label">WhatsApp</div>
+          <div class="ci-text-val">+54 9 11 0000-0000</div>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="ci-dot verde">✉️</div>
+        <div>
+          <div class="ci-text-label">Email</div>
+          <div class="ci-text-val">hola@habitatesencial.com</div>
+        </div>
+      </div>
+      <div class="contacto-item">
+        <div class="ci-dot rosa">🕐</div>
+        <div>
+          <div class="ci-text-label">Horario de atención</div>
+          <div class="ci-text-val">Lunes a viernes, 9 a 18 hs</div>
+        </div>
+      </div>
+
+      <div style="background: var(--rosa); border-radius: 20px; padding: 24px; margin-top: 8px;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--marron); line-height: 1.6; font-style: italic;">
+          "Cada consulta es el comienzo de un ritual. Tu piel merece la mejor orientación."
+        </p>
+      </div>
+    </div>
+
+    <form class="contacto-form" onsubmit="enviarForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Asunto</label>
+        <select>
+          <option>Consulta sobre productos</option>
+          <option>Pedido mayorista</option>
+          <option>Seguimiento de pedido</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Contanos cómo podemos ayudarte..."></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Habitat <em>Esencial</em></div>
+    <div class="footer-copy" style="margin-top:6px;">© 2024 — Cosmética natural consciente</div>
+  </div>
+  <div class="footer-links">
+    <a href="#home">Inicio</a>
+    <a href="#historia">Historia</a>
+    <a href="#productos">Productos</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<!-- WSP FAB -->
+<a class="wsp-fab" href="https://wa.me/5491100000000" target="_blank">
+  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span>¿Hablamos?</span>
+</a>
+
+<!-- CARRITO FAB -->
+<button class="carrito-fab" onclick="toggleCarrito()" id="carrito-fab" style="display:none">
+  🛒 Mi pedido
+  <span class="badge" id="carrito-badge">0</span>
+</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MODAL CARRITO -->
+<div class="modal-overlay" id="carrito-modal" onclick="cerrarSiOverlay(event)">
+  <div class="carrito-panel">
+    <div class="carrito-header">
+      <div class="carrito-titulo">Tu pedido</div>
+      <button class="close-btn" onclick="toggleCarrito()">✕</button>
+    </div>
+    <div id="carrito-body"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+//  PRODUCTOS — cómo agregar imágenes:
+//
+//  1. Creá una carpeta "img" junto al .html
+//  2. Subí tus fotos ahí (jpg, png, webp)
+//  3. En el producto que quieras, cambiá:
+//       imagen: null           → sin foto, usa el emoji
+//       imagen: "img/foto.jpg" → usa tu imagen
+//
+//  El emoji siempre queda como respaldo por
+//  si la imagen no carga.
+// ─────────────────────────────────────────────
+const PRODUCTOS = [
+  { id:1, nombre:"Aceite Oleo Magico",  desc:"Hidratación profunda con aceite de rosa mosqueta y vitamina C.", precio:30000, icono:"🌹", imagen: "img/AceiteOleo21.jpg", cat:"rostro",  color:"#F2C4CE" },
+  { id:2, nombre:"Crema de Manos",      desc:"Regenerador con jojoba, argán y lavanda. Para pieles sensibles.", precio:3200, icono:"🫐", imagen: "img/crema1.jpg", cat:"rostro",  color:"#D8C8E8" },
+  { id:3, nombre:"Demaquillante",       desc:"Agua floral de manzanilla y hamamelis. Equilibra y refresca.",   precio:1800, icono:"🌸", imagen: "img/crema2.jpg", cat:"rostro",  color:"#F2C4CE" },
+];
+
+let carrito = {};
+
+function renderProductos(filtro='todos') {
+  const grid = document.getElementById('productos-grid');
+  const lista = filtro === 'todos' ? PRODUCTOS : PRODUCTOS.filter(p => p.cat === filtro);
+  grid.innerHTML = lista.map(p => `
+    <div class="producto-card" data-cat="${p.cat}">
+      <div class="producto-img" style="background:${p.color}20; overflow:hidden; position:relative;">
+        ${p.imagen
+          ? `<img src="${p.imagen}" alt="${p.nombre}"
+               style="width:100%; height:100%; object-fit:cover; display:block;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+             <span style="display:none; position:absolute; inset:0; align-items:center; justify-content:center; font-size:4rem;">${p.icono}</span>`
+          : `<span style="font-size:4rem;">${p.icono}</span>`
+        }
+        <span class="producto-tag">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-nombre">${p.nombre}</div>
+        <div class="producto-desc-sm">${p.desc}</div>
+        <div class="producto-footer">
+          <div class="precio">$${p.precio.toLocaleString('es-AR')}</div>
+          <button class="add-btn" onclick="agregarAlCarrito(${p.id})">+ Agregar</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filtrar(cat, btn) {
+  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProductos(cat);
+}
+
+function agregarAlCarrito(id) {
+  const p = PRODUCTOS.find(x => x.id === id);
+  if (!carrito[id]) carrito[id] = { ...p, qty: 0 };
+  carrito[id].qty++;
+  actualizarBadge();
+  mostrarToast(`${p.icono} ${p.nombre} agregado`);
+  document.getElementById('carrito-fab').style.display = 'flex';
+}
+
+function actualizarBadge() {
+  const total = Object.values(carrito).reduce((s, i) => s + i.qty, 0);
+  document.getElementById('carrito-badge').textContent = total;
+}
+
+function toggleCarrito() {
+  const modal = document.getElementById('carrito-modal');
+  modal.classList.toggle('open');
+  if (modal.classList.contains('open')) renderCarrito();
+}
+
+function cerrarSiOverlay(e) {
+  if (e.target === document.getElementById('carrito-modal')) toggleCarrito();
+}
+
+function renderCarrito() {
+  const body = document.getElementById('carrito-body');
+  const items = Object.values(carrito).filter(i => i.qty > 0);
+
+  if (items.length === 0) {
+    body.innerHTML = `<div class="carrito-empty">
+      <div class="carrito-empty-icon">🛒</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--marron)">Tu carrito está vacío</p>
+      <p style="font-size:0.85rem;color:var(--text-light)">Explorá nuestros productos naturales</p>
+    </div>`;
+    return;
+  }
+
+  const total = items.reduce((s, i) => s + i.precio * i.qty, 0);
+
+  body.innerHTML = `
+    <div class="carrito-items">
+      ${items.map(i => `
+        <div class="carrito-item">
+          <div class="ci-icon">${i.icono}</div>
+          <div class="ci-info">
+            <div class="ci-nombre">${i.nombre}</div>
+            <div class="ci-precio-unit">$${i.precio.toLocaleString('es-AR')} c/u</div>
+          </div>
+          <div class="ci-controls">
+            <button class="qty-btn" onclick="cambiarQty(${i.id},-1)">−</button>
+            <span class="qty-num">${i.qty}</span>
+            <button class="qty-btn" onclick="cambiarQty(${i.id},1)">+</button>
+          </div>
+          <div class="ci-total">$${(i.precio * i.qty).toLocaleString('es-AR')}</div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="carrito-footer">
+      <div class="subtotal-row">
+        <span class="subtotal-label">Total</span>
+        <span class="subtotal-val">$${total.toLocaleString('es-AR')}</span>
+      </div>
+      <p class="envio-note">🚚 Envío a coordinar por WhatsApp</p>
+      <button class="btn-pedido" onclick="hacerPedido()">Hacer pedido por WhatsApp</button>
+    </div>
+  `;
+}
+
+function cambiarQty(id, delta) {
+  if (!carrito[id]) return;
+  carrito[id].qty = Math.max(0, carrito[id].qty + delta);
+  if (carrito[id].qty === 0) delete carrito[id];
+  actualizarBadge();
+  renderCarrito();
+  const total = Object.values(carrito).reduce((s,i) => s+i.qty, 0);
+  if (total === 0) document.getElementById('carrito-fab').style.display = 'none';
+}
+
+function hacerPedido() {
+  const items = Object.values(carrito).filter(i => i.qty > 0);
+  if (!items.length) return;
+  const total = items.reduce((s,i) => s+i.precio*i.qty, 0);
+  let msg = '¡Hola! Me gustaría hacer el siguiente pedido de Habitat Esencial:%0A%0A';
+  items.forEach(i => {
+    msg += `• ${i.nombre} x${i.qty} = $${(i.precio*i.qty).toLocaleString('es-AR')}%0A`;
+  });
+  msg += `%0A*Total: $${total.toLocaleString('es-AR')}*%0A%0A¿Cómo coordino el envío?`;
+  window.open(`https://wa.me/5491100000000?text=${msg}`, '_blank');
+}
+
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function enviarForm(e) {
+  e.preventDefault();
+  mostrarToast('✓ Mensaje enviado con éxito');
+  e.target.reset();
+}
+
+renderProductos();
+</script>
+</body>
+</html>
